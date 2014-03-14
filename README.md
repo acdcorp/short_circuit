@@ -1,5 +1,7 @@
-short_circuit [![Build Status](https://travis-ci.org/jpruetting/short_circuit.png?branch=master)](https://travis-ci.org/jpruetting/short_circuit)
+short_circuit
 =============
+
+[![Gem Version](https://badge.fury.io/rb/short_circuit.png)](http://badge.fury.io/rb/short_circuit) [![Build Status](https://travis-ci.org/jpruetting/short_circuit.png?branch=master)](https://travis-ci.org/jpruetting/short_circuit) [![Code Climate](https://codeclimate.com/github/jpruetting/short_circuit.png)](https://codeclimate.com/github/jpruetting/short_circuit)
 
 Short Circuit adds simple presenters for Rails views.
 
@@ -13,29 +15,15 @@ Install the gem in your Gemfile:
 gem 'short_circuit'
 ```
 
-If you're using ActiveRecord, you don't need to add anything to your model. short_circuit will be included automatically:
+Include short_circuit in your model:
 
 ```ruby
 # app/models/user.rb
  
 class User < ActiveRecord::Base
-  attr_accessible :first_name, :last_name, :job_title, :member_since
-end
-```
-
-If you want to use a presenter with something other than an AR model, you can include short_circuit manually:
-
-```ruby
-class User
-  include DataMapper::Resource
-  
   include ShortCircuit::Presentable
-  
-  property :id, Serial
-  property :first_name, String
-  property :last_name, String
-  property :job_title, String
-  property :member_since, DateTime
+
+  attr_accessible :first_name, :last_name, :job_title, :member_since
 end
 ```
 
@@ -116,11 +104,10 @@ In the view, you don't need to instantiate any presenter/decorator objects, just
 @user.present! :not_a_real_method # NoMethodError
 ```
 
-Design goals for short_circuit
-===============================
+Design goals
+============
 * Minimize project size and scope
 * Preserve direct access to model attributes
 * Create a separate access point for presenter methods
-* Integrate with ActiveRecord models by default
 * Silence accessor errors by default
 * Delegate missing presenter methods to the model object
