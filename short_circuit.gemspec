@@ -3,7 +3,7 @@ $:.push File.expand_path('../lib', __FILE__)
 require 'short_circuit/version'
 
 Gem::Specification.new do |s|
-  s.name        = 'short_circuit-cj'
+  s.name        = 'short_circuit'
   s.version     = ShortCircuit::VERSION
   s.authors     = ['Jim Pruetting']
   s.email       = ['jim@roboticmethod.com}']
